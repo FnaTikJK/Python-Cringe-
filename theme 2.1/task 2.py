@@ -278,48 +278,48 @@ class Report:
             ind = ind + 1
         wb.save("report.xlsx")
 
-    def generate_image(self, inputer: InputConnect):
+    def generate_image(self, inputer: InputConnect, filename: str):
         fig, axis = plt.subplots(2, 2)
         plt.rcParams.update({'font.size': 8})
-        self.create_bar(axis[0, 0], inputer.years_stats.keys(),
-                        [inputer.years_stats[key].totalSalary for key in inputer.years_stats],
-                        [inputer.vacancy_stats[key].totalSalary for key in inputer.vacancy_stats],
+        self.add_simple_graph(axis[0, 0], inputer.years_stats.keys(),
+                              [inputer.years_stats[key].totalSalary for key in inputer.years_stats],
+                              [inputer.vacancy_stats[key].totalSalary for key in inputer.vacancy_stats],
                         "Средняя з/п", f"з/п {inputer.profession}", "Уровень зарплат по годам")
-        self.create_bar(axis[0, 1], inputer.years_stats.keys(),
-                        [inputer.years_stats[key].count for key in inputer.years_stats],
-                        [inputer.vacancy_stats[key].count for key in inputer.vacancy_stats],
+        self.add_simple_graph(axis[0, 1], inputer.years_stats.keys(),
+                              [inputer.years_stats[key].count for key in inputer.years_stats],
+                              [inputer.vacancy_stats[key].count for key in inputer.vacancy_stats],
                         "Количество ваканский", f"Количество ваканский {inputer.profession}", "Количество вакансий по годам")
         sorted_cities_by_salary =  inputer.get_sorted_cities("totalSalary")
-        self.horizontal_bar(axis[1, 0], [key for key in sorted_cities_by_salary],
-                            [sorted_cities_by_salary[key].totalSalary for key in sorted_cities_by_salary],
+        self.add_horizontal_graph(axis[1, 0], [key for key in sorted_cities_by_salary],
+                                  [sorted_cities_by_salary[key].totalSalary for key in sorted_cities_by_salary],
                             "Уровень зарплат по городам")
         sorted_cities_by_count = inputer.get_sorted_cities("count")
-        self.circle_diagramm(axis[1, 1], [key for key in sorted_cities_by_salary],
-                             [sorted_cities_by_salary[key].count for key in sorted_cities_by_salary],
+        self.add_circle_diagramm(axis[1, 1], [key for key in sorted_cities_by_salary],
+                                 [sorted_cities_by_salary[key].count for key in sorted_cities_by_salary],
                              "Доля ваканский по городам")
         fig.set_size_inches(16, 9)
         fig.tight_layout(h_pad=1)
-        plt.savefig("graph.png")
+        plt.savefig(filename)
 
-    def create_bar(self, ax, x_val, y_val1, y_val2, name_values1, name_values2, title):
-        ax.set_title(title, fontsize=16)
-        ax.grid(axis="y")
-        ax.bar([v + 0.2 for v in x_val], y_val2, label=name_values2, width=0.4)
-        ax.bar([v - 0.2 for v in x_val], y_val1, label=name_values1, width=0.4)
-        ax.legend()
-        ax.tick_params(axis="x", labelrotation=90)
+    def add_simple_graph(self, axis, x_val, y_val1, y_val2, name_values1, name_values2, title):
+        axis.set_title(title, fontsize=16)
+        axis.grid(axis="y")
+        axis.bar([v + 0.2 for v in x_val], y_val2, label=name_values2, width=0.4)
+        axis.bar([v - 0.2 for v in x_val], y_val1, label=name_values1, width=0.4)
+        axis.legend()
+        axis.tick_params(axis="x", labelrotation=90)
 
-    def horizontal_bar(self, ax, x_val, y_val, title):
-        ax.set_title(title, fontsize=16)
-        ax.grid(axis="x")
-        ax.barh(x_val, y_val)
-        ax.invert_yaxis()
+    def add_horizontal_graph(self, axis, x_val, y_val, title):
+        axis.set_title(title, fontsize=16)
+        axis.grid(axis="x")
+        axis.barh(x_val, y_val)
+        axis.invert_yaxis()
 
-    def circle_diagramm(self, ax, names: list, values: list, title):
-        ax.set_title(title, fontsize=16)
+    def add_circle_diagramm(self, axis, names: list, values: list, title):
+        axis.set_title(title, fontsize=16)
         names.append("Другие")
         values.append(1 - sum(values))
-        ax.pie(values, labels=names)
+        axis.pie(values, labels=names)
         plt.axis('equal')
 
 
@@ -333,4 +333,4 @@ inputer.print_answer()
 
 report = Report()
 report.generate_excel(inputer)
-report.generate_image(inputer)
+report.generate_image(inputer, "graph.png")
