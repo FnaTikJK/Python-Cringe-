@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Verdana;
+        }
+        table{
+            border-collapse: collapse;
+            margin: auto;
+        }
+        th{
+            border: 1px solid grey;
+            padding: 5px;
+        }
+        img {
+            width: 100%;
+        }
+        .inline-table {
+            display: inline-block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        Аналитика по зарплатам и городам для профессии {{ profession }}
+    </h1>
+    <img src={{ image_path }}>
+    <h2>Статистика по годам</h2>
+    <table>
+        <tr>
+            <th><strong>Год</strong></th>
+            <th><strong>Средняя зарплата</strong></th>
+            <th><strong>Средняя зарплата - {{ profession }}</strong></th>
+            <th><strong>Количество вакансий</strong></th>
+            <th><strong>Количество вакансий - {{ profession }}</strong></th>
+        </tr>
+        <tr>
+            <th>2007</th>
+            <th>{{ all_avg_salary2007 }}</th>
+            <th>{{ profession_avg_salary2007 }}</th>
+            <th>{{ all_count2007 }}</th>
+            <th>{{ profession_count2007 }}</th>
+        </tr>
+        <tr>
+            <th>2008</th>
+            <th>{{ all_avg_salary2008 }}</th>
+            <th>{{ profession_avg_salary2008 }}</th>
+            <th>{{ all_count2008 }}</th>
+            <th>{{ profession_count2008 }}</th>
+        </tr>
+        <tr>
+            <th>2009</th>
+            <th>{{ all_avg_salary2009 }}</th>
+            <th>{{ profession_avg_salary2009 }}</th>
+            <th>{{ all_count2009 }}</th>
+            <th>{{ profession_count2009 }}</th>
+        </tr>
+        <tr>
+            <th>2010</th>
+            <th>{{ all_avg_salary2010 }}</th>
+            <th>{{ profession_avg_salary2010 }}</th>
+            <th>{{ all_count2010 }}</th>
+            <th>{{ profession_count2010 }}</th>
+        </tr>
+        <tr>
+            <th>2011</th>
+            <th>{{ all_avg_salary2011 }}</th>
+            <th>{{ profession_avg_salary2011 }}</th>
+            <th>{{ all_count2011 }}</th>
+            <th>{{ profession_count2011 }}</th>
+        </tr>
+        <tr>
+            <th>2012</th>
+            <th>{{ all_avg_salary2012 }}</th>
+            <th>{{ profession_avg_salary2012 }}</th>
+            <th>{{ all_count2012 }}</th>
+            <th>{{ profession_count2012 }}</th>
+        </tr>
+        <tr>
+            <th>2013</th>
+            <th>{{ all_avg_salary2013 }}</th>
+            <th>{{ profession_avg_salary2013 }}</th>
+            <th>{{ all_count2013 }}</th>
+            <th>{{ profession_count2013 }}</th>
+        </tr>
+        <tr>
+            <th>2014</th>
+            <th>{{ all_avg_salary2014 }}</th>
+            <th>{{ profession_avg_salary2014 }}</th>
+            <th>{{ all_count2014 }}</th>
+            <th>{{ profession_count2014 }}</th>
+        </tr>
+        <tr>
+            <th>2015</th>
+            <th>{{ all_avg_salary2015 }}</th>
+            <th>{{ profession_avg_salary2015 }}</th>
+            <th>{{ all_count2015 }}</th>
+            <th>{{ profession_count2015 }}</th>
+        </tr>
+        <tr>
+            <th>2016</th>
+            <th>{{ all_avg_salary2016 }}</th>
+            <th>{{ profession_avg_salary2016 }}</th>
+            <th>{{ all_count2016 }}</th>
+            <th>{{ profession_count2016 }}</th>
+        </tr>
+        <tr>
+            <th>2017</th>
+            <th>{{ all_avg_salary2017 }}</th>
+            <th>{{ profession_avg_salary2017 }}</th>
+            <th>{{ all_count2017 }}</th>
+            <th>{{ profession_count2017 }}</th>
+        </tr>
+        <tr>
+            <th>2018</th>
+            <th>{{ all_avg_salary2018 }}</th>
+            <th>{{ profession_avg_salary2018 }}</th>
+            <th>{{ all_count2018 }}</th>
+            <th>{{ profession_count2018 }}</th>
+        </tr>
+        <tr>
+            <th>2019</th>
+            <th>{{ all_avg_salary2019 }}</th>
+            <th>{{ profession_avg_salary2019 }}</th>
+            <th>{{ all_count2019 }}</th>
+            <th>{{ profession_count2019 }}</th>
+        </tr>
+        <tr>
+            <th>2020</th>
+            <th>{{ all_avg_salary2020 }}</th>
+            <th>{{ profession_avg_salary2020 }}</th>
+            <th>{{ all_count2020 }}</th>
+            <th>{{ profession_count2020 }}</th>
+        </tr>
+        <tr>
+            <th>2021</th>
+            <th>{{ all_avg_salary2021 }}</th>
+            <th>{{ profession_avg_salary2021 }}</th>
+            <th>{{ all_count2021 }}</th>
+            <th>{{ profession_count2021 }}</th>
+        </tr>
+        <tr>
+            <th>2022</th>
+            <th>{{ all_avg_salary2022 }}</th>
+            <th>{{ profession_avg_salary2022 }}</th>
+            <th>{{ all_count2022 }}</th>
+            <th>{{ profession_count2022 }}</th>
+        </tr>
+    </table>
+
+    <h2>Статистика по городам</h2>
+    <table class="inline-table">
+        <tr>
+            <th><strong>Город</strong></th>
+            <th><strong>Уровень Зарплат</strong></th>
+        </tr>
+        <tr>
+            <th>{{ table1_city1 }}</th>
+            <th>{{ city_salary1 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table1_city2 }}</th>
+            <th>{{ city_salary2 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table1_city3 }}</th>
+            <th>{{ city_salary3 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table1_city4 }}</th>
+            <th>{{ city_salary4 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table1_city5 }}</th>
+            <th>{{ city_salary5 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table1_city6 }}</th>
+            <th>{{ city_salary6 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table1_city7 }}</th>
+            <th>{{ city_salary7 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table1_city8 }}</th>
+            <th>{{ city_salary8 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table1_city9 }}</th>
+            <th>{{ city_salary9 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table1_city10 }}</th>
+            <th>{{ city_salary10 }}</th>
+        </tr>
+    </table>
+
+    <table class="inline-table">
+        <tr>
+            <th><strong>Город</strong></th>
+            <th><strong>Доля ваканский</strong></th>
+        </tr>
+        <tr>
+            <th>{{ table2_city1 }}</th>
+            <th>{{ city_count1 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table2_city2 }}</th>
+            <th>{{ city_count2 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table2_city3 }}</th>
+            <th>{{ city_count3 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table2_city4 }}</th>
+            <th>{{ city_count4 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table2_city5 }}</th>
+            <th>{{ city_count5 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table2_city6 }}</th>
+            <th>{{ city_count6 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table2_city7 }}</th>
+            <th>{{ city_count7 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table2_city8 }}</th>
+            <th>{{ city_count8 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table2_city9 }}</th>
+            <th>{{ city_count9 }}</th>
+        </tr>
+        <tr>
+            <th>{{ table2_city10 }}</th>
+            <th>{{ city_count10 }}</th>
+        </tr>
+    </table>
+</body>
+</html>
